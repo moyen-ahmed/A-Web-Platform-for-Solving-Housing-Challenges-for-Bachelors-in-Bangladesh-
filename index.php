@@ -47,7 +47,7 @@
             </div>
 
           </form><br>
-          <p align="center">i don't have any account <a href="register.html" class="text-warning" style="font-weight:600;text-decoration:none;">Register Here</a></p>
+          <p align="center">i don't have any account <a href="register.php" class="text-warning" style="font-weight:600;text-decoration:none;">Register Here</a></p>
         </div>
       </div>
     </div>
