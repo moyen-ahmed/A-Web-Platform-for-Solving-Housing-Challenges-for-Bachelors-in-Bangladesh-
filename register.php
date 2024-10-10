@@ -47,7 +47,7 @@
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example3c"><i class="bi bi-envelope-at-fill"></i> Your Email</label>
-                        <input type="email" id="form3Example3c" class="form-control form-control-lg py-3" name="username" autocomplete="off" placeholder="Enter your email" style="border-radius:25px;" />
+                        <input type="email" id="form3Example3c" class="form-control form-control-lg py-3" name="email" autocomplete="off" placeholder="Enter your email" style="border-radius:25px;" />
                       </div>
                     </div>
 
@@ -122,8 +122,6 @@
         return false;
       }
 
-      // If everything is fine, show a popup for successful registration
-      alert("Registration successful!");
       return true;
     }
 
@@ -160,7 +158,7 @@ if ($_POST) {
 
     // Sanitize and validate user inputs
     $name = $con->real_escape_string(trim($_POST['name']));
-    $email = $con->real_escape_string(trim($_POST['username']));
+    $email = $con->real_escape_string(trim($_POST['email']));
     $phone = $con->real_escape_string(trim($_POST['phone']));
     $password = $con->real_escape_string(trim($_POST['password']));
     $confirm_password = $con->real_escape_string(trim($_POST['confirm_password']));
@@ -174,7 +172,7 @@ if ($_POST) {
         echo "<script>alert('Passwords do not match.');</script>";
     } else {
         // Check if email is already registered
-        $emailCheck = "SELECT * FROM registration WHERE username='$email'";
+        $emailCheck = "SELECT * FROM registration WHERE email='$email'";
         $result = $con->query($emailCheck);
         if ($result->num_rows > 0) {
             echo "<script>alert('This email is already registered.');</script>";
@@ -183,7 +181,7 @@ if ($_POST) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert data into the database
-            $sql = "INSERT INTO registration (name, username, phone, password) VALUES ('$name', '$email', '$phone', '$hashed_password')";
+            $sql = "INSERT INTO registration (name,email, phone, password) VALUES ('$name', '$email', '$phone', '$hashed_password')";
 
             if ($con->query($sql) === TRUE) {
                 echo "<script>alert('Registration successful!');</script>";
